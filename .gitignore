@@ -84,8 +84,10 @@ $RECYCLE.BIN/
 *.opendb
 *.user
 .vs/
-boost_1_62_0/boost/
-boost_1_62_0/lib/
+boost_1_62_0/boost/*
+!boost_1_62_0/boost/.gitkeep
+boost_1_62_0/lib/*
+!boost_1_62_0/lib/.gitkeep
 ipch/
 Debug/
 Release/*
