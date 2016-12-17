@@ -77,3 +77,18 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+#############################################################################
+*.dat
+*.sdf
+*.opendb
+*.user
+.vs/
+boost_1_62_0/boost/
+boost_1_62_0/lib/
+ipch/
+Debug/
+Release/
+!Release/KeyBox.exe
+#############################################################################
+

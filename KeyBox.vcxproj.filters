@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{d0143ab8-b4b3-4231-93d6-af8cfb1f8665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="operate">
+      <UniqueIdentifier>{e3f5e9ba-151f-427c-995b-f01221489cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manager">
+      <UniqueIdentifier>{bc2c9f60-40f6-4d1a-958f-b39a7d00f06d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="event">
+      <UniqueIdentifier>{9cc20101-ec8f-4bc4-b0a0-15ced6024b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{d622589c-8944-478d-8568-9ac8a41793af}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\event\Event.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event\EventQueue.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event\KeyEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event\MouseEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event\SleepEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\event\StopEvent.h">
+      <Filter>event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\KeyParser.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main\Main.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manager\KeyManager.h">
+      <Filter>manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\operate\Key.h">
+      <Filter>operate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\operate\Mouse.h">
+      <Filter>operate</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>other</Filter>
+    </ClInclude>
+    <ClInclude Include="res\resource.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\event\EventQueue.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\KeyEvent.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\MouseEvent.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\SleepEvent.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\StopEvent.cpp">
+      <Filter>event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\KeyParser.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\Main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manager\KeyManager.cpp">
+      <Filter>manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\operate\Key.cpp">
+      <Filter>operate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\operate\Mouse.cpp">
+      <Filter>operate</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>other</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\KeyBox.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\App.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Play.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\PlaySetting.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Record.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\RecordSetting.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\RequestRegister.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
