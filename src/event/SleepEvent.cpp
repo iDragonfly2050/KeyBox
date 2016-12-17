@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include <thread>
-#include <boost/serialization/export.hpp>
-#include "SleepEvent.h"
 #include "manager/KeyManager.h"
-BOOST_CLASS_EXPORT(SleepEvent)
+#include "SleepEvent.h"
+#include <boost/serialization/export.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+BOOST_CLASS_EXPORT_IMPLEMENT(SleepEvent)
 
 SleepEvent::SleepEvent(microseconds sleepTime, bool trueSleep) {
 	_sleepTime = sleepTime;

@@ -1,6 +1,9 @@
 #pragma once
 #include "Event.h"
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/export.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 //	Todo:stm ÊÇ·ñÐèÒªÉ¾³ý
 class StopEvent : public Event {
@@ -15,3 +18,5 @@ private:
 		ar & boost::serialization::base_object<Event>(*this);
 	}
 };
+
+BOOST_CLASS_EXPORT_KEY(StopEvent)

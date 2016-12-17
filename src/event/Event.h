@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include <boost/serialization/access.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/assume_abstract.hpp>
+#include <boost/serialization/export.hpp>
 
 class Event {
 public:
@@ -14,3 +18,6 @@ private:
 
 	}
 };
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Event)
+BOOST_CLASS_EXPORT_KEY(Event)

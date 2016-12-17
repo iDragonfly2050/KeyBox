@@ -3,6 +3,9 @@
 #include <boost/serialization/access.hpp>
 #include "Event.h"
 #include "operate/Key.h"
+#include <boost/serialization/export.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 using namespace std::chrono;
 
 enum KeyEventState { NOSTATE, UP, DOWN };
@@ -28,3 +31,5 @@ private:
 		ar & _state;
 	}
 };
+
+BOOST_CLASS_EXPORT_KEY(KeyEvent)

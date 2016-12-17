@@ -7,7 +7,9 @@
 #include "operate/Mouse.h"
 #include "manager/KeyManager.h"
 #include <boost/serialization/export.hpp>
-BOOST_CLASS_EXPORT(MouseEvent)
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+BOOST_CLASS_EXPORT_IMPLEMENT(MouseEvent)
 
 using namespace std::chrono;
 

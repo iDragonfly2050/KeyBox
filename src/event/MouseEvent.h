@@ -3,6 +3,9 @@
 #include "Windows.h"
 #include "operate/Mouse.h"
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/export.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 class MouseEvent : public Event {
 public:
@@ -27,3 +30,5 @@ private:
 		ar & _mouse;
 	}
 };
+
+BOOST_CLASS_EXPORT_KEY(MouseEvent);

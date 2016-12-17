@@ -2,6 +2,9 @@
 #include "Event.h"
 #include <chrono>
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/export.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 using namespace std::chrono;
 
 class SleepEvent : public Event {
@@ -40,3 +43,5 @@ private:
 		ar & _trueSleep;
 	}
 };
+
+BOOST_CLASS_EXPORT_KEY(SleepEvent)
