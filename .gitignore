@@ -88,7 +88,7 @@ boost_1_62_0/boost/
 boost_1_62_0/lib/
 ipch/
 Debug/
-Release/
+Release/*
 !Release/KeyBox.exe
 #############################################################################
 
