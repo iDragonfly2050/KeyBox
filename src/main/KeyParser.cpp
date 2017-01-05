@@ -142,10 +142,8 @@ bool onRecord(int isKey, const Mouse & mouse, const Key & key, KeyEventState sta
 			// 记录下录制过程中第一次鼠标事件时的位置
 			if (firstMouseEvent) {
 				firstMouseEvent = false;
-				POINT point;
-				GetCursorPos(&point);
-				keyManager->setLastX(point.x);
-				keyManager->setLastY(point.y);
+				keyManager->setLastX(x);
+				keyManager->setLastY(y);
 			}
 			x -= keyManager->getLastX();
 			y -= keyManager->getLastY();
@@ -284,11 +282,11 @@ bool onPlay(int isKey, const Mouse & mouse, const Key & key, KeyEventState state
 		// 鼠标模式：1或2预处理
 		auto mouseMode = keyManager->getMouseMode();
 		if (mouseMode == 1 || mouseMode == 2) {
-			// 记录下录制过程中第一次鼠标事件时的位置
+			// 记录下播放过程鼠标的初始位置
 			if (needToGetRelative) {
 				needToGetRelative = false;
 				POINT point;
-				GetCursorPos(&point);
+				GetPhysicalCursorPos(&point);
 				keyManager->setLastX(point.x);
 				keyManager->setLastY(point.y);
 			}
@@ -431,10 +429,8 @@ bool onQuickRecord(int isKey, const Mouse & mouse, const Key & key, KeyEventStat
 			// 记录下录制过程中第一次鼠标事件时的位置
 			if (firstMouseEvent) {
 				firstMouseEvent = false;
-				POINT point;
-				GetCursorPos(&point);
-				keyManager->setLastX(point.x);
-				keyManager->setLastY(point.y);
+				keyManager->setLastX(x);
+				keyManager->setLastY(y);
 			}
 			x -= keyManager->getLastX();
 			y -= keyManager->getLastY();
@@ -573,11 +569,11 @@ bool onQucikPlay(int isKey, const Mouse & mouse, const Key & key, KeyEventState 
 		// 鼠标模式：1或2预处理
 		auto mouseMode = keyManager->getMouseMode();
 		if (mouseMode == 1 || mouseMode == 2) {
-			// 记录下录制过程中第一次鼠标事件时的位置
+			// 记录下播放过程鼠标的初始位置
 			if (needToGetRelative) {
 				needToGetRelative = false;
 				POINT point;
-				GetCursorPos(&point);
+				GetPhysicalCursorPos(&point);
 				keyManager->setLastX(point.x);
 				keyManager->setLastY(point.y);
 			}
@@ -878,7 +874,7 @@ LRESULT CALLBACK parserMouse(HWND hWnd, HHOOK mouseHook, LPARAM lParam, int nCod
 // 		HDC hdc;
 // 		std::wstring text1, text2;
 		auto keyManager = KeyManager::getInstance();
-		POINT point = ((MSLLHOOKSTRUCT*)lParam)->pt;
+		POINT point;
 		auto zDelta = (short)HIWORD(((MSLLHOOKSTRUCT*)lParam)->mouseData);
 		Mouse::MouseType mouseType = Mouse::NOTYPE;
 
@@ -923,6 +919,7 @@ LRESULT CALLBACK parserMouse(HWND hWnd, HHOOK mouseHook, LPARAM lParam, int nCod
 				break;
 		}
 
+		GetPhysicalCursorPos(&point);
 		Mouse mouse(mouseType, point.x, point.y, zDelta);
 
 		if (keyManager->isOnRecord()) {
