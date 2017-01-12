@@ -32,54 +32,60 @@ public:
 	// 配置保存与载入
 	/////////////////////////////////////////////////////////////
 	void saveSettings() const {
-		std::ofstream ofile("settings.dat");
+		std::ofstream ofile("settings.dat", std::ofstream::out | std::ofstream::binary);
 		if (ofile.is_open() && ofile.good()) {
-			boost::archive::binary_oarchive oa(ofile);
-			oa << *this;
+			try {
+				boost::archive::binary_oarchive oa(ofile);
+				oa << *this;
+			}
+			catch (const std::exception & err) {
+				std::cerr << err.what() << std::endl;
+			}
 		}
-		ofile.close();
 	}
 	void loadSettings() {
-		std::ifstream ifile("settings.dat");
+		std::ifstream ifile("settings.dat", std::ifstream::in | std::ifstream::binary);
 		if (ifile.is_open() && ifile.good()) {
 			try {
 				boost::archive::binary_iarchive ia(ifile);
 				ia >> *this;
 			}
-			catch (const std::exception&) {
-				// 输入流错误，什么都不做
+			catch (const std::exception & err) {
+				std::cerr << err.what() << std::endl;
 			}
 		}
-		ifile.close();
 	}
 
 	/////////////////////////////////////////////////////////////
 	// 寄存器的保存与载入
 	/////////////////////////////////////////////////////////////
 	void saveRegisters() const {
-		std::ofstream ofile("registers.dat");
+		std::ofstream ofile("registers.dat", std::ofstream::out | std::ofstream::binary);
 		if (ofile.is_open() && ofile.good()) {
-			boost::archive::binary_oarchive oa(ofile);
-			oa << _registers;
+			try {
+				boost::archive::binary_oarchive oa(ofile);
+				oa << _registers;
+			}
+			catch (const std::exception & err) {
+				std::cerr << err.what() << std::endl;
+			}
 		}
-		ofile.close();
 	}
 
 	void loadRegisters() {
-		std::ifstream ifile("registers.dat");
+		std::ifstream ifile("registers.dat", std::ifstream::in | std::ifstream::binary);
 		if (ifile.is_open() && ifile.good()) {
-			decltype(_registers) registers;
 			try {
+				decltype(_registers) registers;
 				boost::archive::binary_iarchive ia(ifile);
 				ia >> registers;
+				for (auto & val : registers)
+					_registers[val.first] = val.second;
 			}
-			catch (const std::exception&) {
-				// 输入流错误，什么都不做
+			catch (const std::exception & err) {
+				std::cerr << err.what() << std::endl;
 			}
-			for (auto & val : registers)
-				_registers[val.first] = val.second;
 		}
-		ifile.close();
 	}
 
 
