@@ -10,6 +10,7 @@
 #include "main.h"
 #include "KeyParser.h"
 #include "manager\KeyManager.h"
+#include <string>
 
 #define MAX_LOADSTRING 100
 #define USER_NOTIFY_ICON_CLICK (WM_USER+100)
@@ -25,6 +26,7 @@ HHOOK mouseHook;								// 鼠标钩子
 NOTIFYICONDATA stateIcon;						// 系统托盘图标
 HANDLE hMutex;									// 锁，只允许运行一个实例
 HKEY hRunWhenBootKey;							// 开机启动注册表键
+std::wstring currentPath;						// 当前目录
 LPCTSTR bootKey = L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";
 HMENU hMenu = GetSubMenu(LoadMenu((HINSTANCE)GetWindowLongPtr(hWnd, GWLP_HINSTANCE), MAKEINTRESOURCE(IDR_MENU)), 0);
 std::mutex mutex;
@@ -54,6 +56,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// 开启DPI识别
 	SetProcessDPIAware();
 
+	// 获取当前目录
+	TCHAR moduleFileName[MAX_PATH];
+	GetModuleFileName(NULL, moduleFileName, MAX_PATH);
+	currentPath = std::wstring(moduleFileName);
+	std::wstring sep(L"\\");
+	auto it = currentPath.find_last_of(sep);
+	if (it != std::wstring::npos) {
+		currentPath = currentPath.substr(0, it + 1);
+	}
+
 	// 初始化全局字符串
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_WIN32PROJECT, szWindowClass, MAX_LOADSTRING);
@@ -75,8 +87,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	if (mouseHook == NULL)
 		MessageBox(hWnd, L"键盘监听失败！", TEXT("错误"), MB_OK);
 
-
-	// 主消息循环: 
+// 主消息循环: 
 	MSG msg;
 	while (GetMessage(&msg, nullptr, 0, 0)) {
 		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {

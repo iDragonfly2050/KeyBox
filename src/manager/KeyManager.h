@@ -9,6 +9,7 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/serialization/map.hpp>
 #include "event/EventQueue.h"
+#include <string>
 
 using namespace std::chrono;
 
@@ -32,7 +33,9 @@ public:
 	// 配置保存与载入
 	/////////////////////////////////////////////////////////////
 	void saveSettings() const {
-		std::ofstream ofile("settings.dat", std::ofstream::out | std::ofstream::binary);
+		extern std::wstring currentPath;
+		std::wstring settings = currentPath + L"settings.dat";
+		std::ofstream ofile(settings, std::ofstream::out | std::ofstream::binary);
 		if (ofile.is_open() && ofile.good()) {
 			try {
 				boost::archive::binary_oarchive oa(ofile);
@@ -44,7 +47,9 @@ public:
 		}
 	}
 	void loadSettings() {
-		std::ifstream ifile("settings.dat", std::ifstream::in | std::ifstream::binary);
+		extern std::wstring currentPath;
+		std::wstring settings = currentPath + L"settings.dat";
+		std::ifstream ifile(settings, std::ifstream::in | std::ifstream::binary);
 		if (ifile.is_open() && ifile.good()) {
 			try {
 				boost::archive::binary_iarchive ia(ifile);
@@ -60,7 +65,9 @@ public:
 	// 寄存器的保存与载入
 	/////////////////////////////////////////////////////////////
 	void saveRegisters() const {
-		std::ofstream ofile("registers.dat", std::ofstream::out | std::ofstream::binary);
+		extern std::wstring currentPath;
+		std::wstring registers = currentPath + L"registers.dat";
+		std::ofstream ofile(registers, std::ofstream::out | std::ofstream::binary);
 		if (ofile.is_open() && ofile.good()) {
 			try {
 				boost::archive::binary_oarchive oa(ofile);
@@ -73,7 +80,9 @@ public:
 	}
 
 	void loadRegisters() {
-		std::ifstream ifile("registers.dat", std::ifstream::in | std::ifstream::binary);
+		extern std::wstring currentPath;
+		std::wstring registers = currentPath + L"registers.dat";
+		std::ifstream ifile(registers, std::ifstream::in | std::ifstream::binary);
 		if (ifile.is_open() && ifile.good()) {
 			try {
 				decltype(_registers) registers;
@@ -87,7 +96,6 @@ public:
 			}
 		}
 	}
-
 
 	/////////////////////////////////////////////////////////////
 	// 录制与播放状态
